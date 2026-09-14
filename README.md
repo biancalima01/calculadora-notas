@@ -19,3 +19,10 @@ A Calculadora de Notas é uma aplicação simples desenvolvida em Python para ca
 - GitHub
 - GitHub Actions
 - Pytest
+
+## Como executar
+
+Execute o programa com:
+
+```bash
+python calculadora.py
