@@ -20,3 +20,6 @@ def test_aluno_em_recuperacao():
 
 def test_aluno_reprovado():
     assert verificar_situacao(4) == "Reprovado"
+
+def test_aluno_aprovado_nota_minima():
+    assert verificar_situacao(7) == "Aprovado"
