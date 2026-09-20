@@ -1,0 +1,26 @@
+name: Discord Alert
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Enviar alerta ao Discord
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          REPOSITORY: ${{ github.repository }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          payload=$(jq -n \
+            --arg repo "$REPOSITORY" \
+            --arg actor "$ACTOR" \
+            '{content: ("GitHub Actions: novo push na branch main do repositório " + $repo + " por " + $actor + ".")}')
+          
+          curl -H "Content-Type: application/json" \
+            -d "$payload" \
+            "$DISCORD_WEBHOOK"
